@@ -5,5 +5,20 @@
             "email": "tinhoefaela@gmail.com",
             "password": "Well.10091999"
         }
+    ],
+    "chart": [10,20,30,50,60,20,30,60,40,20,40,20],
+    "delivery": [
+       {
+        "id": 1,
+        "status": "Pendente",
+        "status_code": 1,
+        "street": "Rua Jair Nóbrega",
+        "number": "115",
+        "complement": "",
+        "neighborhood": "Terra Firme",
+        "city": "Rio das Ostras",
+        "state": "RJ",
+        "country": "Brazilian"
+       }
     ]
 }
