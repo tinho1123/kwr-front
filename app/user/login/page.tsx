@@ -18,13 +18,12 @@ export default function Login() {
     const email = form.get("email");
     const password = form.get("password");
 
-    const response = await fetchAPI(
+    const user = await fetchAPI(
       `/user?email=${email}&password=${password}`,
       { method: "GET" }
     );
 
-    const user = await response.json();
-    if (user.length > 0) {
+    if (user) {
       redirect("/user/dashboard");
     }
   }

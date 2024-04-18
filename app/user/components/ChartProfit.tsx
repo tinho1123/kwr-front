@@ -1,40 +1,29 @@
 'use client';
 
 import { fetchAPI } from "@/app/lib/fetchAPI";
-import { Bar } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    registerables,
-
-} from 'chart.js';
+import { BarChart } from '@mui/x-charts';
 import moment from 'moment';
 import useSWR from 'swr';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-ChartJS.register(...registerables)
-
 export default function ChartProfit() {
-    const { data: chartData } = useSWR(`chart`, async url => await fetchAPI('/chart'), { refreshInterval: 10000 });
+    const { data: dashboard } = useSWR(`/dashboard`, async url => await fetchAPI<{chart: []}>(url), { refreshInterval: 10000 });
 
     return (
-        <Card className="w-1/3">
+        <Card className="max-w-fit">
             <CardHeader className="text-center">
                 <CardTitle className="text-lg">Lucro Anual</CardTitle>
                 <CardDescription>Mês de {moment().year()}</CardDescription>
             </CardHeader>
             <CardContent>
-                <Bar options={{
-                    responsive: true
-                }} data={{
-                    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    datasets: [
-                        {
-                            label: 'Lucro',
-                            data: chartData,
-                            backgroundColor: 'blue'
-                        }
-                    ]
-                }} />
+                {dashboard?.chart && dashboard?.chart.length > 0 && (
+                    <BarChart
+                        xAxis={[{ scaleType: 'band', data: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'] }]}
+                        series={[{data: dashboard.chart}]}
+                        width={1000}
+                        height={500}
+                    />
+                )}
             </CardContent>
         </Card>
     )

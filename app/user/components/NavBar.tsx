@@ -8,11 +8,13 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { Separator } from "@/components/ui/separator";
 import { Dashboard as DashboardIcon, Group as GroupIcon, DeliveryDining as DeliveryDiningIcon, MoneyOff as MoneyOffIcon } from "@mui/icons-material";
 import Link from "next/link";
 
 export default function NavBar() {
   return (
+    <div className="space-y-2">
     <div className="flex justify-between mr-5 mt-2">
       <NavigationMenu>
         <NavigationMenuList className="flex gap-10">
@@ -63,5 +65,7 @@ export default function NavBar() {
         <AvatarFallback>Usuário</AvatarFallback>
       </Avatar>
     </div>
+      <Separator />
+</div>
   );
 }
