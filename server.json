@@ -25,8 +25,34 @@
   "delivery": [
     {
       "id": "1",
-      "status": "Despachado",
-      "status_code": 2,
+      "status": "Finalizado",
+      "status_code": 3,
+      "street": "Rua Jair Nóbrega",
+      "number": "115",
+      "complement": "",
+      "neighborhood": "Terra Firme",
+      "city": "Rio das Ostras",
+      "state": "RJ",
+      "country": "Brazilian",
+      "phone": "21991751952"
+    },
+    {
+      "id": "2",
+      "status": "Aguardando",
+      "status_code": 1,
+      "street": "Rua Jair Nóbrega",
+      "number": "115",
+      "complement": "",
+      "neighborhood": "Terra Firme",
+      "city": "Rio das Ostras",
+      "state": "RJ",
+      "country": "Brazilian",
+      "phone": "21991751952"
+    },
+    {
+      "id": "3",
+      "status": "Finalizado",
+      "status_code": 3,
       "street": "Rua Jair Nóbrega",
       "number": "115",
       "complement": "",

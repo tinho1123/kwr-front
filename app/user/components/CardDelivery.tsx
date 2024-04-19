@@ -32,7 +32,7 @@ export default function CardDelivery() {
     const handleClickDelivery = async ({ currentTarget: { value, tabIndex } }: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         const findStatusDelivery = statusDelivery.find(status => status.id == tabIndex);
 
-        await fetchAPI(`/delivery/${value}`, { method: "PATCH", body: JSON.stringify({status_code: findStatusDelivery?.id, status: findStatusDelivery?.description})})
+        await fetchAPI(`/delivery/${value}`, { method: "PATCH", body: JSON.stringify({ status_code: findStatusDelivery?.id, status: findStatusDelivery?.description }) })
     }
 
     return (
@@ -44,7 +44,7 @@ export default function CardDelivery() {
                     )}
                 </div>)
                 : (
-                    <>
+                    <div className="flex gap-5">
                         {deliveryData.length > 0 && deliveryData.map(delivery => (
                             <Card className="max-w-fit">
                                 <CardHeader>
@@ -65,11 +65,13 @@ export default function CardDelivery() {
                                 </CardContent>
                                 <Separator />
                                 <CardFooter className="flex justify-end mt-3">
-                                    <Button onClick={handleClickDelivery} value={delivery.id} tabIndex={delivery.status_code + 1}>{statusButton.find(status => status.id == delivery.status_code + 1)?.description}</Button>
+                                    {delivery.status_code <= statusButton.length &&
+                                        <Button onClick={handleClickDelivery} value={delivery.id} tabIndex={delivery.status_code + 1}>{statusButton.find(status => status.id == delivery.status_code + 1)?.description}</Button>
+                                    }
                                 </CardFooter>
                             </Card>
                         ))}
-                    </>
+                    </div>
                 )}
 
         </div>
