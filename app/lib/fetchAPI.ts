@@ -1,4 +1,8 @@
-export const fetchAPI = (path:String, config?: RequestInit): Promise<Response> => {
-    const apiHost:String = (process.env.API_HOST as String);
-    return fetch(`${apiHost}${path}`,config);
-}
+import axios from "axios";
+
+export const api = axios.create({
+  baseURL: "http://localhost:8080",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+});

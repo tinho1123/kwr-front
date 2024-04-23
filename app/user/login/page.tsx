@@ -1,4 +1,4 @@
-import { fetchAPI } from "@/app/lib/fetchAPI";
+import { api } from "@/app/lib/fetchAPI";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,13 +18,12 @@ export default function Login() {
     const email = form.get("email");
     const password = form.get("password");
 
-    const response = await fetchAPI(
-      `/user?email=${email}&password=${password}`,
-      { method: "GET" }
-    );
+    const { data } = await api.post("user/sign-in", {
+      email,
+      password,
+    });
 
-    const user = await response.json();
-    if (user.length > 0) {
+    if (data.return) {
       redirect("/user/dashboard");
     }
   }
@@ -37,7 +36,7 @@ export default function Login() {
             Sign in to your account
           </CardTitle>
         </CardHeader>
-        <form className="space-y-5" action={handleSubmit} method="POST">
+        <form className="space-y-5" action={handleSubmit}>
           <CardContent>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
               <div>
